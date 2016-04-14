@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <title>Todos</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="javascripts/handlebars-v4.0.5.js"></script>
+    <script src="javascripts/todos.js"></script>
+  </head>
+  <body>
+    <main>
+      <section id="menu">
+
+
+        <ul id="dates">
+
+        </ul>
+
+        <h2>Completed</h2>
+
+        <ul id="completed-todos">
+        </ul>
+
+      </section>
+
+      <section id="todo-container">
+          <a id="menu-icon" href="#"></a>
+
+          <article id="current_todos">
+          </article>
+
+      </section>
+
+      <div id="modal_container"></div>
+
+    </main>
+
+    <!--- templates --------------------------------------------->
+    <script type="x-handlebars-template" id="modal">
+      <div id="modal" data-id="{{id}}">
+        <h1>{{name}}</h1>
+          {{# if date}}
+          <a class="add_date">{{date}}</a><span class="hint">&#8592; Double click to edit<span>
+          {{else}}
+          <a class="add_date">Add date</a><span class="hint">&#8592; Double click to edit<span>
+          {{/if}}
+          </br>
+                <a class="save">Save</a>
+        {{# if checked}}
+          <a href="#" class="mark_as_complete complete-button">Mark as incomplete</a>
+          {{else}}
+        <a href="#" class="mark_as_complete">Mark as complete</a>
+        {{/ if}}
+        <a href="#" id="close_button">X</a></br>
+
+      </div>
+      <div id="modal_bg"></div>
+    </script>
+
+    <script type="x-handlebars-template" id="current_todos">
+    <a id="#menu_icon"></a>
+      <h2 id="todo-title">{{list_name}}</h2><span class="circle">{{todos_length}}</span><br />
+      <a id="add_button" href="#"></a><input id="new_todo_input" type="text" placeholer="Add new todo">
+
+      <ul>
+      {{#each todos}}
+        <li>
+
+        {{#if this.checked}}
+          <input type="checkbox" data-id="{{id}}" checked>
+          {{else}}
+          <input type="checkbox" data-id="{{id}}">
+        {{/if}}
+
+          <label>
+            <a class="modal_launcher">
+              {{name}}
+              {{#if date}}
+                  : {{date}}
+              {{/if}}
+              </a>
+            <a class="trash_can" data-id={{id}}></a>
+          </label>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+
+    <script type="x-handlebars-template" id="edit_date">
+      <input type="text" data-id="{{id}}" value="{{date}}">
+    </script>
+
+    <script type="x-handlebars-template" id="dates">
+    <a><h1 id="all_todos_button">All Todos</h1></a><span id="dates_circle" class="circle">{{incomplete_items}}</span>
+      {{#each dates}}
+        {{> date}}
+      {{/each}}
+    </script>
+
+    <script type="x-handlebars-partical" id="date">
+      <li><a href="#>">{{this}}</a></li>
+    </script>
+
+  </body>
+</html>
