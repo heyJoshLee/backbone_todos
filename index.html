@@ -51,9 +51,20 @@
 
 
     <script type="x-handlebars-tempalte" id="todo_template">
-      {{title}}
-      {{date}}
-      {{complete}}
+        {{#if this.checked}}
+          <input type="checkbox" data-id="{{id}}" checked>
+          {{else}}
+          <input type="checkbox" data-id="{{id}}">
+        {{/if}}
+          <label>
+            <a class="modal_launcher">
+              {{name}}
+              {{#if date}}
+                  : {{date}}
+              {{/if}}
+              </a>
+            <a class="trash_can" data-id={{id}}></a>
+          </label>
     </script>
 
     <script src="javascripts/app.js"></script>

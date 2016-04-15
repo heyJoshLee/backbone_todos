@@ -1,6 +1,5 @@
 App.TodoView = Backbone.View.extend({
   tagName: "li",
-  className: "todo",
   template: Handlebars.compile($("#todo_template").html()),
 
   initialize: function() {
