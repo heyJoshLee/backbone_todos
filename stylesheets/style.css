@@ -35,6 +35,7 @@ a {
 #menu,
 #todo_container {
   height: 100%;
+  overflow-y: scroll;
 }
 
 *, li, a {

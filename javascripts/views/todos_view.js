@@ -9,8 +9,9 @@ App.TodosView = Backbone.View.extend({
   addTodo: function() {
     var title = $("#new_todo_input").val();
     $("#new_todo_input").val("");
-    console.log("Creating to")
     app.collection.create(new App.Todo({title: title}));
+    console.log("collection length is")
+    console.log(app.collection.length)
   },
 
   initialize: function() {
@@ -22,6 +23,9 @@ App.TodosView = Backbone.View.extend({
 
   render: function() {
     var incomplete_todos = this.collection.where({complete: false}).length;
+    console.log("collection is")
+    console.log(this.collection)
+    console.log(this.collection.toArray())
     this.$el.html(this.template({date: this.date, incomplete_length: incomplete_todos}));
     app.$el.find("#todo_container").append(this.$el);
     this.renderTodos()
