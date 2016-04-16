@@ -15,6 +15,7 @@ App.TodosView = Backbone.View.extend({
   initialize: function() {
     this.date = arguments[0]["date"];
     this.listenTo(app.collection, "add", this.render);
+    this.listenTo(this.collection, "change:complete", this.render)
     this.render();
   },
 
@@ -28,7 +29,22 @@ App.TodosView = Backbone.View.extend({
 
   renderTodos: function() {
     var self = this;
-    _.each(this.collection.toArray(), function(todo) {
+    
+    var incomplete_todos = [],
+        complete_todos = [];
+
+    for(var i = 0; i < this.collection.toArray().length; i ++) {
+      var current_todo = this.collection.toArray()[i];
+      if (current_todo.get("complete")) {
+        complete_todos.push(current_todo);
+      } else {
+        incomplete_todos.push(current_todo);
+      }
+    }
+
+    var sorted_todos = incomplete_todos.concat(complete_todos);
+
+    _.each(sorted_todos, function(todo) {
       self.$el.find("ul").append( new App.TodoView({model: todo}).$el)
     })
   }
