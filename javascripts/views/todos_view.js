@@ -10,7 +10,6 @@ App.TodosView = Backbone.View.extend({
     var title = $("#new_todo_input").val();
     $("#new_todo_input").val("");
     app.collection.create(new App.Todo({title: title}));
-    console.log(title);
   },
 
   initialize: function() {

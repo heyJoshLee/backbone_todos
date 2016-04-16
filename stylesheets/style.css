@@ -359,9 +359,28 @@ modal
   display: block;
   clear:both;
 }
+.mark_as_incomplete {
+  float: left;
+  margin-left: 50px;
+  padding: 10px 20px;
+  color: white;
+  background-color: rgb(255, 182, 0);
+}
 
-.complete-button {
-  background-color: rgba(219, 167, 24, 1);
+.mark_as_incomplete:after {
+  content: "";
+  display: block;
+  clear:both;
+}
+
+input[type="date"] {
+  display: none;
+}
+
+
+.editing + input[type="date"] {
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 .hint {

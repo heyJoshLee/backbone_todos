@@ -25,15 +25,13 @@
     <script type="x-handlebars-template" id="modal_template">
       <div id="modal" data-id="{{id}}">
         <h1>{{title}}</h1>
-          {{# if date}}
-          <a class="add_date">{{date}}</a><span class="hint">&#8592; Double click to edit<span>
-          {{else}}
-          <a class="add_date">Add date</a><span class="hint">&#8592; Double click to edit<span>
-          {{/if}}
+          <a class="add_date">{{date}}</a>
+          <input type="date" id="date_input">
+          <span class="hint">&#8592; Double click to edit<span>
           </br>
                 <a class="save">Save</a>
-        {{# if checked}}
-          <a href="#" class="mark_as_complete complete-button">Mark as incomplete</a>
+        {{# if complete}}
+          <a href="#" class="mark_as_incomplete">Mark as incomplete</a>
           {{else}}
         <a href="#" class="mark_as_complete">Mark as complete</a>
         {{/ if}}
@@ -69,11 +67,11 @@
     </script> 
 
 
-    <script type="x-handlebars-tempalte" id="todo_template">
-        {{#if this.checked}}
-          <input type="checkbox" data-id="{{id}}" checked>
+    <script type="x-handlebars-template" id="todo_template">
+        {{#if this.complete}}
+          <input type="checkbox" checked>
           {{else}}
-          <input type="checkbox" data-id="{{id}}">
+          <input type="checkbox">
         {{/if}}
           <label>
             <a class="modal_launcher">

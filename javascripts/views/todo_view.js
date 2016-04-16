@@ -4,7 +4,12 @@ App.TodoView = Backbone.View.extend({
 
   events: {
     "click .trash_can": "deleteTodo",
-    "click .modal_launcher": "launchModal"
+    "click .modal_launcher": "launchModal",
+    "click [type='checkbox']": "toggleComplete"
+  },
+
+  toggleComplete: function() {
+    this.model.set("complete", !this.model.get("complete"));
   },
 
   launchModal: function() {
@@ -21,6 +26,8 @@ App.TodoView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
+    this.listenTo(this.model, "change", this.render);
+
   },
 
   render: function() {
