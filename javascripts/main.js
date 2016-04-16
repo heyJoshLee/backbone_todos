@@ -10,4 +10,4 @@ var app = new App.AppView({collection: new App.Todos()});
 
 app.collection.add(todos_collection);
 new App.MenuView()
-new App.TodosView({collection: app.collection});
+new App.TodosView({collection: app.collection, date: "12/12"});

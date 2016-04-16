@@ -16,7 +16,6 @@
       <section id="menu"></section>
 
       <section id="todo_container"></section>
-      <section id="todo_container"></section>
 
       <div id="modal_container"></div>
 
@@ -39,12 +38,11 @@
     </script>
 
     <script type="x-handlebars-template" id="todo_container_template">
-      {{date}}
-
-      <a href="#" class="add_button">Add new Todo</a><input type="text" placeholder="New Todo" /> 
-
-      <ul class="todos">
-
+    <a id="#menu_icon"></a>
+      <h2 id="todo-title">{{date}}</h2><span class="circle">{{collection_length}}</span><br />
+      <a id="add_button" href="#"></a><input id="new_todo_input" type="text" placeholer="Add new todo">
+      <ul>
+      
       </ul>
 
     </script> 
@@ -58,7 +56,7 @@
         {{/if}}
           <label>
             <a class="modal_launcher">
-              {{name}}
+              {{title}}
               {{#if date}}
                   : {{date}}
               {{/if}}

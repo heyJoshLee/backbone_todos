@@ -33,7 +33,7 @@ a {
 }
 
 #menu,
-#todo-container {
+#todo_container {
   height: 100%;
 }
 
@@ -182,17 +182,17 @@ li.active > .circle {
   #todo
 ******************/
 
-#todo-container {
+#todo_container {
   overflow: hidden;
   padding: 23px 100px 0 33px;
   box-sizing: border-box;
 }
 
-#todo-container ul {
+#todo_container ul {
   padding: 0;
 }
 
-#todo-container li {
+#todo_container li {
   list-style: none;
   border-top: 1px solid #e7e7e7;
   padding: 14px 0;
@@ -206,11 +206,11 @@ li.active > .circle {
   float: right;
 }
 
-#todo-container li:hover:after {
+#todo_container li:hover:after {
   cursor: pointer;
 }
 
-#todo-container label:hover {
+#todo_container label:hover {
   cursor: pointer;
   color: #60a9de;
 }
@@ -374,6 +374,10 @@ modal
 #dates_circle {
   position: relative;
   bottom: 20px;
+}
+
+* {
+  color: black ;
 }
 
 /*****************
