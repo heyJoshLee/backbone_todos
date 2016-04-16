@@ -30,7 +30,7 @@ App.TodosView = Backbone.View.extend({
   renderTodos: function() {
     var self = this;
     _.each(this.collection.toArray(), function(todo) {
-      self.$el.find("ul").append( new App.TodoView({model:todo.toJSON()}).$el)
+      self.$el.find("ul").append( new App.TodoView({model: todo}).$el)
     })
   }
 })
