@@ -13,13 +13,10 @@ App.TodoView = Backbone.View.extend({
   },
 
   launchModal: function() {
-    console.log(this.model)
     new App.ModalView({model: this.model});
-    console.log("Should launch modal");
   },
 
   deleteTodo: function() {
-    console.log(this.model)
     this.model.destroy()
     this.remove();
   },

@@ -41,24 +41,24 @@
     </script>
 
     <script type="x-handlebars-template" id="menu_template">
-        <a><h1 id="all_todos_button">All Todos</h1></a><span id="dates_circle" class="circle">{{incomplete_items}}</span>
+        <a><h1 id="all_todos_button">All Todos</h1></a><span id="dates_circle" class="circle">{{incomplete_count}}</span>
 
         <ul id="dates">
-          {{#each not_completed}}
-            <li>{{this.date}}</li>
+          {{#each incomplete}}
+            <li class="date" data-date={{this}}>{{this}}</li>
           {{/each}}
         </ul>
           <h2>Completed</h2>
           <ul id="completed-todos">
-            {{#each completed}}
-              <li>{{this.date}}</li>
+            {{#each complete}}
+              <li class="date" data-date={{this}}>{{this}}</li>
             {{/each}}
           </ul>
     </script>
 
     <script type="x-handlebars-template" id="todo_container_template">
     <a id="#menu_icon"></a>
-      <h2 id="todo-title">{{date}}</h2><span class="circle">{{collection_length}}</span><br />
+      <h2 id="todo-title">{{date}}</h2><span class="circle">{{incomplete_length}}</span><br />
       <a id="add_button" href="#"></a><input id="new_todo_input" type="text" placeholer="Add new todo">
       <ul>
       

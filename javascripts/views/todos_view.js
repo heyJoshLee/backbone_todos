@@ -9,6 +9,7 @@ App.TodosView = Backbone.View.extend({
   addTodo: function() {
     var title = $("#new_todo_input").val();
     $("#new_todo_input").val("");
+    console.log("Creating to")
     app.collection.create(new App.Todo({title: title}));
   },
 
@@ -20,16 +21,15 @@ App.TodosView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html("");
-    this.$el.html(this.template({date: this.date, collection_length: this.collection.length}));
+    var incomplete_todos = this.collection.where({complete: false}).length;
+    this.$el.html(this.template({date: this.date, incomplete_length: incomplete_todos}));
     app.$el.find("#todo_container").append(this.$el);
     this.renderTodos()
     return this;
   },
 
   renderTodos: function() {
-    var self = this;
-    
+    var self = this;    
     var incomplete_todos = [],
         complete_todos = [];
 
@@ -43,7 +43,6 @@ App.TodosView = Backbone.View.extend({
     }
 
     var sorted_todos = incomplete_todos.concat(complete_todos);
-
     _.each(sorted_todos, function(todo) {
       self.$el.find("ul").append( new App.TodoView({model: todo}).$el)
     })
