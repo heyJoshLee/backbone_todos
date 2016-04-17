@@ -2,41 +2,33 @@ App.MenuView = Backbone.View.extend({
   template: Handlebars.compile($("#menu_template").html()),
 
   events: {
-    "click .date": "switchTodo",
-    "click #all_todos_button": "renderAllTodos"
+    "click .date, #all_todos_button": "switchTodos"
   },
 
-  renderAllTodos: function(e) {
-    var active = $(e.currentTarget);
-        active.addClass('active');
-        $('li').removeClass('active');
-    new App.TodosView({collection: app.collection, date: "All Todos"});
-  },
+  // render different todo lists
+  switchTodos: function(e) {
+    var active = $(e.currentTarget),
+        date = $(e.target).attr("data-date");
 
-  switchTodo: function(e) {
-    var active = $(e.currentTarget);
-        active.addClass('active');
-        $('li').not(active).removeClass('active');
-        $("h1").removeClass("active")
+    $('li, h1').removeClass('active');
+    active.addClass('active');
 
-    var date = $(e.target).attr("data-date");
-
-    new App.TodosView({collection: new App.Todos(app.collection.where({date: date})), date: date});
+    app.todos_view.render(date);
   },
 
   initialize: function() {
     this.listenTo(app.collection, "change", this.render);
-    this.listenTo(app.collection, "add", this.render);
-    this.listenTo(app.collection, "remove", this.render);
+    // this.listenTo(app.collection, "add", this.render);
+    // this.listenTo(app.collection, "remove", this.render);
     this.render();
   },
 
+  // get list of unique dates from whole collection
   getDates: function() {
     return _.uniq(_.pluck(app.collection.toJSON(), "date"));
   },
 
   render: function() {
-    console.log("rendering menu")
     var dates = this.getDates();
 
      var incomplete_dates = [],
@@ -52,7 +44,6 @@ App.MenuView = Backbone.View.extend({
       }
     }
 
-   
     this.$el.html(this.template({incomplete_count: incomplete_dates.length, complete: complete_dates, incomplete: incomplete_dates}));
     app.$el.find("#menu").append(this.$el);
     return this;
