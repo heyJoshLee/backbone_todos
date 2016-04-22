@@ -6,6 +6,7 @@ App.MenuView = Backbone.View.extend({
   },
 
   // render different todo lists
+  // I'm re-rendering the todos list with different data instead of creating new views
   switchTodos: function(e) {
     var active = $(e.currentTarget),
         date = $(e.target).attr("data-date");
@@ -18,8 +19,8 @@ App.MenuView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo(app.collection, "change", this.render);
-    // this.listenTo(app.collection, "add", this.render);
-    // this.listenTo(app.collection, "remove", this.render);
+    this.listenTo(app.collection, "add", this.render);
+    this.listenTo(app.collection, "remove", this.render);
     this.render();
   },
 
